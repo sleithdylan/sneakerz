@@ -1,7 +1,14 @@
+// Imports React
 import React from 'react';
+// Imports ReactDOM
 import ReactDOM from 'react-dom';
+// Imports Custom Bootstrap
+import './bootstrap.min.css';
+// Imports index.css
 import './index.css';
+// Imports App Component
 import App from './App';
+// Imports reportWebVitals
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
