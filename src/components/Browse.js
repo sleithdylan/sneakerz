@@ -103,6 +103,7 @@ export class Browse extends Component {
   render() {
     return (
       <>
+        <h2 className='font-weight-bold'>NEW ADS</h2>
         <Ads ads={this.state.ads} />
       </>
     );

@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 // Imports Browse Component
 import Browse from './components/Browse';
+// Imports PlaceAd Component
+import PlaceAd from './components/PlaceAd';
 
 class App extends Component {
   render() {
@@ -21,6 +23,7 @@ class App extends Component {
             {/* Renders the first child <Route> that matches location */}
             <Switch>
               <Route path='/' component={Browse} exact />
+              <Route path='/ad/new' component={PlaceAd} />
             </Switch>
           </Container>
         </main>

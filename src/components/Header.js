@@ -20,7 +20,7 @@ export class Header extends Component {
                 <LinkContainer to='/'>
                   <Nav.Link>Browse</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to='/ad'>
+                <LinkContainer to='/ad/new'>
                   <Nav.Link>Place Ad</Nav.Link>
                 </LinkContainer>
               </Nav>
