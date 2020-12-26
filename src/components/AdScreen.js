@@ -3,15 +3,33 @@ import React, { Component } from 'react';
 // Imports Link Component from React Router DOM
 import { Link } from 'react-router-dom';
 // Imports Row, Col, Image, ListGroup Component from React Bootstrap
-import { Row, Col, Image, ListGroup } from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 // Imports axios
 import axios from 'axios';
 
 export class AdScreen extends Component {
+  // Constructor
+  constructor() {
+    // Invoke constructor
+    super();
+    this.RemoveAd = this.RemoveAd.bind(this);
+  }
   state = {
     // ads state
     ads: []
   };
+
+  RemoveAd(e) {
+    e.preventDefault();
+
+    axios
+      .delete(`http://localhost:4000/api/ads/${this.props.match.params.id}`)
+      .then(() => {
+        // Redirects to Browse Route
+        this.props.history.push('/');
+      })
+      .catch();
+  }
 
   // Lifecycle Hook
   componentDidMount() {
@@ -30,12 +48,22 @@ export class AdScreen extends Component {
   render() {
     return (
       <>
-        <Row className='d-flex flex-row-reverse'>
-          <Link className='btn btn-light my-3' to={`/edit/${this.state.ads._id}`}>
-            Edit Ad
-          </Link>
-        </Row>
-        <Row className='my-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <div className='mb-5'>
+            <Link className='btn btn-light' to={`/`}>
+              Go Back
+            </Link>
+          </div>
+          <div className='mb-5'>
+            <Link className='btn btn-light mr-3' to={`/edit/${this.state.ads._id}`}>
+              Edit Ad
+            </Link>
+            <Button className='btn-danger' type='button' onClick={this.RemoveAd}>
+              Remove Ad
+            </Button>
+          </div>
+        </div>
+        <Row className='mt-5 pt-5'>
           <Col md={6}>
             <Image src={this.state.ads.image} alt={this.state.ads.name} fluid />
           </Col>

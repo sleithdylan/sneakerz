@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 // Imports axios
 import axios from 'axios';
+// Imports Link Component from React Router DOM
+import { Link } from 'react-router-dom';
 
 export class PlaceAd extends Component {
   constructor() {
@@ -48,9 +50,7 @@ export class PlaceAd extends Component {
       // Post Request to API
       .post('http://localhost:4000/api/ads', newAd)
       // Get Response
-      .then(res => {
-        console.log(res);
-      })
+      .then()
       // Return error if anything goes wrong
       .catch(err => {
         console.log(err);
@@ -102,6 +102,9 @@ export class PlaceAd extends Component {
   render() {
     return (
       <>
+        <Link className='btn btn-light mb-4' to={`/`}>
+          Go Back
+        </Link>
         <h2 className='font-weight-bold'>PLACE AD</h2>
         <br />
         <form onSubmit={this.onSubmit}>
@@ -159,7 +162,7 @@ export class PlaceAd extends Component {
               onChange={this.onChangeDescription}></textarea>
           </div>
           <div className='form-group'>
-            <input type='submit' value='Place Ad' className='btn btn-secondary' />
+            <input type='submit' value='Place Ad' className='btn btn-block btn-secondary' />
           </div>
         </form>
       </>

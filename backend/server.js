@@ -61,18 +61,27 @@ app.get('/api/ads', (req, res) => {
 // @desc Returns a specific ad
 // @route GET /api/ads/:id
 app.get('/api/ads/:id', (req, res) => {
-  console.log(req.params.id);
-
   // Find ad by ID
   Ad.findById(req.params.id, (err, data) => {
     res.json(data);
   });
 });
 
+// @desc Deletes a specific ad
+// @route DELETE /api/ads/:id
+app.delete('/api/ads/:id', (req, res) => {
+  console.log(`Removed Ad: ${req.params.id}`);
+
+  // Finds movie by ID and deletes it
+  Ad.findByIdAndDelete(req.params.id, (err, data) => {
+    res.send(data);
+  });
+});
+
 // @desc Updates a specific ad
 // @route PUT /api/ads/:id
 app.put('/api/ads/:id', (req, res) => {
-  console.log('Update Ad: ' + req.params.id);
+  console.log(`Updated Ad: ${req.params.id}`);
   console.log(req.body);
 
   // Finds ad by ID and updates it

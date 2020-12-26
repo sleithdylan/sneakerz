@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 // Imports axios
 import axios from 'axios';
+// Imports Link Component from React Router DOM
+import { Link } from 'react-router-dom';
 
 export class EditAd extends Component {
   constructor() {
@@ -48,9 +50,7 @@ export class EditAd extends Component {
     // Update ad
     axios
       .put(`http://localhost:4000/api/ads/${this.state._id}`, newAd)
-      .then(res => {
-        console.log(res.data);
-      })
+      .then()
       .catch(err => {
         console.log(err);
       });
@@ -58,7 +58,6 @@ export class EditAd extends Component {
 
   // Lifecycle Method
   componentDidMount() {
-    console.log(this.props.match.params.id);
     // Gets ad ID
     axios
       .get(`http://localhost:4000/api/ads/${this.props.match.params.id}`)
@@ -121,6 +120,9 @@ export class EditAd extends Component {
   render() {
     return (
       <>
+        <Link className='btn btn-light mb-4' to={`/ad/${this.props.match.params.id}`}>
+          Go Back
+        </Link>
         <h2 className='font-weight-bold'>EDIT AD</h2>
         <br />
         <form onSubmit={this.onSubmit}>
@@ -178,7 +180,7 @@ export class EditAd extends Component {
               onChange={this.onChangeDescription}></textarea>
           </div>
           <div className='form-group'>
-            <input type='submit' value='Edit Ad' className='btn btn-secondary' />
+            <input type='submit' value='Edit Ad' className='btn btn-block btn-secondary' />
           </div>
         </form>
       </>

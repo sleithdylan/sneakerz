@@ -9,7 +9,7 @@ export class Footer extends Component {
       <footer>
         <Container>
           <Row>
-            <Col className='text-center py-3'>FOOTER</Col>
+            <Col className='text-center py-3'>&copy; Dylan Sleith | G00354557 </Col>
           </Row>
         </Container>
       </footer>
