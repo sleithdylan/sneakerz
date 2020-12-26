@@ -10,6 +10,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 // Require Mongoose
 const mongoose = require('mongoose');
+// Require Path
+const path = require('path');
 
 // CORS
 app.use(cors());
@@ -20,6 +22,10 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+
+// Use build directory
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -113,6 +119,11 @@ app.post('/api/ads', (req, res) => {
 
   // Returns "Ad Placed"
   res.send('Ad Placed');
+});
+
+// For any other URL, send index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../build/index.html'));
 });
 
 app.listen(port, () => {
