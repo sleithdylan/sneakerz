@@ -1,5 +1,7 @@
 // Imports React, Component
 import React, { Component } from 'react';
+// Imports axios
+import axios from 'axios';
 
 export class PlaceAd extends Component {
   constructor() {
@@ -33,6 +35,27 @@ export class PlaceAd extends Component {
     alert(
       `Ad: ${this.state.name} | ${this.state.price} | ${this.state.image} | ${this.state.brand} | ${this.state.category} | ${this.state.description}`
     );
+
+    // newAd Object
+    const newAd = {
+      name: this.state.name,
+      price: this.state.price,
+      image: this.state.image,
+      brand: this.state.brand,
+      category: this.state.category,
+      description: this.state.description
+    };
+    axios
+      // Post Request to API
+      .post('http://localhost:4000/api/ads', newAd)
+      // Get Response
+      .then(res => {
+        console.log(res);
+      })
+      // Return error if anything goes wrong
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   // onChangeName Method
