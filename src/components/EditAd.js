@@ -33,9 +33,6 @@ export class EditAd extends Component {
   onSubmit(e) {
     // Prevents users from submitting more than once
     e.preventDefault();
-    alert(
-      `Ad: ${this.state.name} | ${this.state.price} | ${this.state.image} | ${this.state.brand} | ${this.state.category} | ${this.state.description}`
-    );
 
     // newAd Object
     const newAd = {
@@ -50,7 +47,10 @@ export class EditAd extends Component {
     // Update ad
     axios
       .put(`http://localhost:4000/api/ads/${this.state._id}`, newAd)
-      .then()
+      .then(() => {
+        // Redirects to Browse Route
+        this.props.history.push(`/ad/${this.props.match.params.id}`);
+      })
       .catch(err => {
         console.log(err);
       });

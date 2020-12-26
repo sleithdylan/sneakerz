@@ -33,9 +33,6 @@ export class PlaceAd extends Component {
   onSubmit(e) {
     // Prevents users from submitting more than once
     e.preventDefault();
-    alert(
-      `Ad: ${this.state.name} | ${this.state.price} | ${this.state.image} | ${this.state.brand} | ${this.state.category} | ${this.state.description}`
-    );
 
     // newAd Object
     const newAd = {
@@ -50,7 +47,10 @@ export class PlaceAd extends Component {
       // Post Request to API
       .post('http://localhost:4000/api/ads', newAd)
       // Get Response
-      .then()
+      .then(() => {
+        // Redirects to Browse Route
+        this.props.history.push('/');
+      })
       // Return error if anything goes wrong
       .catch(err => {
         console.log(err);
