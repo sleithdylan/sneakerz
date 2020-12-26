@@ -35,7 +35,7 @@ mongoose.connect(connectionString, { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 
-// Movie Schema
+// Ad Schema
 var adSchema = new Schema({
   name: String,
   image: String,
@@ -66,6 +66,18 @@ app.get('/api/ads/:id', (req, res) => {
   // Find ad by ID
   Ad.findById(req.params.id, (err, data) => {
     res.json(data);
+  });
+});
+
+// @desc Updates a specific ad
+// @route PUT /api/ads/:id
+app.put('/api/ads/:id', (req, res) => {
+  console.log('Update Ad: ' + req.params.id);
+  console.log(req.body);
+
+  // Finds ad by ID and updates it
+  Ad.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, data) => {
+    res.send(data);
   });
 });
 

@@ -12,6 +12,10 @@ import Header from './components/Header';
 import Browse from './components/Browse';
 // Imports PlaceAd Component
 import PlaceAd from './components/PlaceAd';
+// Imports EditAd Component
+import EditAd from './components/EditAd';
+// Imports AdScreen Component
+import AdScreen from './components/AdScreen';
 
 class App extends Component {
   render() {
@@ -24,6 +28,8 @@ class App extends Component {
             <Switch>
               <Route path='/' component={Browse} exact />
               <Route path='/ad/new' component={PlaceAd} />
+              <Route path='/ad/:id' component={AdScreen} />
+              <Route path='/edit/:id' component={EditAd} />
             </Switch>
           </Container>
         </main>

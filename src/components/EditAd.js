@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // Imports axios
 import axios from 'axios';
 
-export class PlaceAd extends Component {
+export class EditAd extends Component {
   constructor() {
     super();
     // Bind methods to onChange Events
@@ -44,17 +44,36 @@ export class PlaceAd extends Component {
       category: this.state.category,
       description: this.state.description
     };
+
+    // Update ad
     axios
-      // Post Request to API
-      .post('http://localhost:4000/api/ads', newAd)
-      // Get Response
+      .put(`http://localhost:4000/api/ads/${this.state._id}`, newAd)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
       })
-      // Return error if anything goes wrong
       .catch(err => {
         console.log(err);
       });
+  }
+
+  // Lifecycle Method
+  componentDidMount() {
+    console.log(this.props.match.params.id);
+    // Gets ad ID
+    axios
+      .get(`http://localhost:4000/api/ads/${this.props.match.params.id}`)
+      .then(res => {
+        this.setState({
+          _id: res.data._id,
+          name: res.data.name,
+          price: res.data.price,
+          image: res.data.image,
+          brand: res.data.brand,
+          category: res.data.category,
+          description: res.data.description
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   // onChangeName Method
@@ -102,7 +121,7 @@ export class PlaceAd extends Component {
   render() {
     return (
       <>
-        <h2 className='font-weight-bold'>PLACE AD</h2>
+        <h2 className='font-weight-bold'>EDIT AD</h2>
         <br />
         <form onSubmit={this.onSubmit}>
           <div className='form-group'>
@@ -159,7 +178,7 @@ export class PlaceAd extends Component {
               onChange={this.onChangeDescription}></textarea>
           </div>
           <div className='form-group'>
-            <input type='submit' value='Place Ad' className='btn btn-secondary' />
+            <input type='submit' value='Edit Ad' className='btn btn-secondary' />
           </div>
         </form>
       </>
@@ -167,4 +186,4 @@ export class PlaceAd extends Component {
   }
 }
 
-export default PlaceAd;
+export default EditAd;
