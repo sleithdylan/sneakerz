@@ -19,7 +19,7 @@ export class Browse extends Component {
       // Get Response
       .then(res => {
         // Update ads state with data from API
-        this.setState({ ads: res.data.ads });
+        this.setState({ ads: res.data });
       })
       // Return error if anything goes wrong
       .catch(err => console.log(err));
