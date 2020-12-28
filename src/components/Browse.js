@@ -4,11 +4,17 @@ import React, { Component } from 'react';
 import Ads from './Ads';
 // Imports axios
 import axios from 'axios';
+import Search from './Search';
 
 export class Browse extends Component {
   state = {
-    // ads state
-    ads: []
+    ads: [],
+    searchAd: ''
+  };
+
+  // handleInput Method
+  handleInput = e => {
+    this.setState({ searchAd: e.target.value });
   };
 
   // Lifecycle Hook
@@ -26,10 +32,16 @@ export class Browse extends Component {
   }
 
   render() {
+    let filteredAds = this.state.ads.filter(ad => {
+      // Returns ad in lowercase then checks if the search string is included inside of state
+      return ad.name.toLowerCase().includes(this.state.searchAd.toLowerCase());
+    });
+
     return (
       <>
+        <Search handleInput={this.handleInput} />
         <h2 className='font-weight-bold'>NEW ADS</h2>
-        <Ads ads={this.state.ads} />
+        <Ads ads={this.state.ads && filteredAds} />
       </>
     );
   }
