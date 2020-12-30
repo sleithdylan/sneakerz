@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Ads from './Ads';
 // Imports axios
 import axios from 'axios';
+// Imports Search Component
 import Search from './Search';
 
 export class Browse extends Component {
