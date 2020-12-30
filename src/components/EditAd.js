@@ -180,7 +180,19 @@ export class EditAd extends Component {
               onChange={this.onChangeDescription}></textarea>
           </div>
           <div className='form-group'>
-            <input type='submit' value='Edit Ad' className='btn btn-block btn-secondary' />
+            <input
+              type='submit'
+              value='Edit Ad'
+              className='btn btn-block btn-secondary'
+              disabled={
+                !this.state.name ||
+                !this.state.image ||
+                !this.state.brand ||
+                !this.state.category ||
+                !this.state.description ||
+                !this.state.price
+              }
+            />
           </div>
         </form>
       </>
