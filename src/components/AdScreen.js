@@ -15,7 +15,6 @@ export class AdScreen extends Component {
     this.RemoveAd = this.RemoveAd.bind(this);
   }
   state = {
-    // ads state
     ads: []
   };
 

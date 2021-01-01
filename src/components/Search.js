@@ -14,16 +14,14 @@ export class Search extends Component {
     };
 
     return (
-      <div>
-        <Form.Group>
-          <Form.Control
-            type='text'
-            placeholder='Search Sneaker...'
-            onChange={this.props.handleInput}
-            style={formControlUnderlined}
-          />
-        </Form.Group>
-      </div>
+      <Form.Group>
+        <Form.Control
+          type='text'
+          placeholder='Search Sneaker...'
+          onChange={this.props.handleInput}
+          style={formControlUnderlined}
+        />
+      </Form.Group>
     );
   }
 }
