@@ -9,7 +9,9 @@ export class Footer extends Component {
       <footer>
         <Container>
           <Row>
-            <Col className='text-center mb-5'>&copy; Dylan Sleith | G00354557 </Col>
+            <Col className="text-center mb-5">
+              &copy; Dylan Sleith | G00354557{' '}
+            </Col>
           </Row>
         </Container>
       </footer>

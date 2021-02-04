@@ -51,7 +51,7 @@ export class EditAd extends Component {
         // Redirects to Browse Route
         this.props.history.push(`/ad/${this.props.match.params.id}`);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -61,7 +61,7 @@ export class EditAd extends Component {
     // Gets ad ID
     axios
       .get(`http://localhost:4000/api/ads/${this.props.match.params.id}`)
-      .then(res => {
+      .then((res) => {
         this.setState({
           _id: res.data._id,
           name: res.data.name,
@@ -72,7 +72,7 @@ export class EditAd extends Component {
           description: res.data.description
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   // onChangeName Method
@@ -120,70 +120,74 @@ export class EditAd extends Component {
   render() {
     return (
       <>
-        <Link className='btn btn-light mb-4' to={`/ad/${this.props.match.params.id}`}>
+        <Link
+          className="btn btn-light mb-4"
+          to={`/ad/${this.props.match.params.id}`}
+        >
           Go Back
         </Link>
-        <h2 className='font-weight-bold'>EDIT AD</h2>
+        <h2 className="font-weight-bold">EDIT AD</h2>
         <br />
         <form onSubmit={this.onSubmit}>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Name</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.name}
               onChange={this.onChangeName}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Price</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.price}
               onChange={this.onChangePrice}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Image</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.image}
               onChange={this.onChangeImage}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Brand</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.brand}
               onChange={this.onChangeBrand}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Category</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.category}
               onChange={this.onChangeCategory}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Description</label>
             <textarea
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.description}
-              onChange={this.onChangeDescription}></textarea>
+              onChange={this.onChangeDescription}
+            ></textarea>
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <input
-              type='submit'
-              value='Edit Ad'
-              className='btn btn-block btn-secondary'
+              type="submit"
+              value="Edit Ad"
+              className="btn btn-block btn-secondary"
               disabled={
                 !this.state.name ||
                 !this.state.image ||

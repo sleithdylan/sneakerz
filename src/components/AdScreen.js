@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 // Imports axios
 import axios from 'axios';
+// Imports Spinner Component from React Bootstrap
+import { Spinner } from 'react-bootstrap';
 
 export class AdScreen extends Component {
   // Constructor
@@ -15,7 +17,8 @@ export class AdScreen extends Component {
     this.RemoveAd = this.RemoveAd.bind(this);
   }
   state = {
-    ads: []
+    ads: [],
+    loading: false
   };
 
   RemoveAd(e) {
@@ -32,44 +35,53 @@ export class AdScreen extends Component {
 
   // Lifecycle Hook
   componentDidMount() {
+    // Show spinner
+    this.setState({ loading: 'true' });
     axios
       // Get Request to API
       .get(`http://localhost:4000/api/ads/${this.props.match.params.id}`)
       // Get Response
-      .then(res => {
+      .then((res) => {
         // Update ads state with data from API
         this.setState({ ads: res.data });
       })
       // Return error if anything goes wrong
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err))
+      // When Promise is settled, don't show spinner
+      .finally(() => this.setState({ loading: false }));
   }
 
   render() {
-    return (
-      <>
-        <div className='d-flex justify-content-between align-items-center'>
-          <div className='mb-5'>
-            <Link className='btn btn-light' to={`/`}>
-              Go Back
-            </Link>
-          </div>
-          <div className='mb-5'>
-            <Link className='btn btn-light mr-3' to={`/edit/${this.state.ads._id}`}>
-              Edit Ad
-            </Link>
-            <Button className='btn-danger' type='button' onClick={this.RemoveAd}>
-              Remove Ad
-            </Button>
-          </div>
-        </div>
-        <Row className='mt-5 pt-5'>
+    // Spinner Inline CSS
+    let spinner = {
+      left: '50vw',
+      top: '50vh',
+      position: 'absolute'
+    };
+
+    let showAd;
+    // Show Spinner when fetching data
+    if (this.state.loading) {
+      showAd = (
+        <Spinner
+          animation="border"
+          role="status"
+          loaded={this.state.loading}
+          style={spinner}
+        >
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      );
+    } else {
+      showAd = (
+        <Row className="mt-5 pt-5">
           <Col md={6}>
             <Image src={this.state.ads.image} alt={this.state.ads.name} fluid />
           </Col>
           <Col md={6}>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2 className='font-weight-bold'>{this.state.ads.name}</h2>
+                <h2 className="font-weight-bold">{this.state.ads.name}</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <strong>Brand:</strong> <br />
@@ -89,6 +101,34 @@ export class AdScreen extends Component {
             </ListGroup>
           </Col>
         </Row>
+      );
+    }
+
+    return (
+      <>
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="mb-5">
+            <Link className="btn btn-light" to={`/`}>
+              Go Back
+            </Link>
+          </div>
+          <div className="mb-5">
+            <Link
+              className="btn btn-light mr-3"
+              to={`/edit/${this.state.ads._id}`}
+            >
+              Edit Ad
+            </Link>
+            <Button
+              className="btn-danger"
+              type="button"
+              onClick={this.RemoveAd}
+            >
+              Remove Ad
+            </Button>
+          </div>
+        </div>
+        {showAd}
       </>
     );
   }

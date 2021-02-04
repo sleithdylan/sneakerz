@@ -9,18 +9,20 @@ export class Header extends Component {
   render() {
     return (
       <header>
-        <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
-          <Container className='py-1'>
-            <LinkContainer to='/'>
-              <Navbar.Brand className='font-weight-bold'>SNEAKERZ.</Navbar.Brand>
+        <Navbar bg="light" variant="light" expand="lg" collapseOnSelect>
+          <Container className="py-1">
+            <LinkContainer to="/">
+              <Navbar.Brand className="font-weight-bold">
+                SNEAKERZ.
+              </Navbar.Brand>
             </LinkContainer>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' />
-            <Navbar.Collapse id='basic-navbar-nav'>
-              <Nav className='ml-auto'>
-                <LinkContainer to='/'>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ml-auto">
+                <LinkContainer to="/">
                   <Nav.Link>Browse</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to='/ad/new'>
+                <LinkContainer to="/ad/new">
                   <Nav.Link>Place Ad</Nav.Link>
                 </LinkContainer>
               </Nav>

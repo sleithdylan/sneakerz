@@ -17,7 +17,7 @@ export class Browse extends Component {
   };
 
   // handleInput Method
-  handleInput = e => {
+  handleInput = (e) => {
     this.setState({ searchAd: e.target.value });
   };
 
@@ -29,18 +29,18 @@ export class Browse extends Component {
       // Get Request to API
       .get('http://localhost:4000/api/ads')
       // Get Response
-      .then(res => {
+      .then((res) => {
         // Update ads state with data from API
         this.setState({ ads: res.data });
       })
       // Return error if anything goes wrong
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
       // When Promise is settled, don't show spinner
       .finally(() => this.setState({ loading: false }));
   }
 
   render() {
-    let filteredAds = this.state.ads.filter(ad => {
+    let filteredAds = this.state.ads.filter((ad) => {
       // Returns ad in lowercase then checks if the search string is included inside of state
       return ad.name.toLowerCase().includes(this.state.searchAd.toLowerCase());
     });
@@ -54,8 +54,13 @@ export class Browse extends Component {
 
     // Show Spinner when fetching data
     const adsList = this.state.loading ? (
-      <Spinner animation='border' role='status' loaded={this.state.loading} style={spinner}>
-        <span className='sr-only'>Loading...</span>
+      <Spinner
+        animation="border"
+        role="status"
+        loaded={this.state.loading}
+        style={spinner}
+      >
+        <span className="sr-only">Loading...</span>
       </Spinner>
     ) : (
       <Ads ads={this.state.ads && filteredAds} />
@@ -64,7 +69,7 @@ export class Browse extends Component {
     return (
       <>
         <Search handleInput={this.handleInput} />
-        <h2 className='font-weight-bold'>NEW ADS</h2>
+        <h2 className="font-weight-bold">NEW ADS</h2>
         {adsList}
       </>
     );

@@ -52,7 +52,7 @@ export class PlaceAd extends Component {
         this.props.history.push('/');
       })
       // Return error if anything goes wrong
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -102,70 +102,71 @@ export class PlaceAd extends Component {
   render() {
     return (
       <>
-        <Link className='btn btn-light mb-4' to={`/`}>
+        <Link className="btn btn-light mb-4" to={`/`}>
           Go Back
         </Link>
-        <h2 className='font-weight-bold'>PLACE AD</h2>
+        <h2 className="font-weight-bold">PLACE AD</h2>
         <br />
         <form onSubmit={this.onSubmit}>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Name</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.name}
               onChange={this.onChangeName}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Price</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.price}
               onChange={this.onChangePrice}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Image</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.image}
               onChange={this.onChangeImage}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Brand</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.brand}
               onChange={this.onChangeBrand}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Category</label>
             <input
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.category}
               onChange={this.onChangeCategory}
             />
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <label>Description</label>
             <textarea
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               value={this.state.description}
-              onChange={this.onChangeDescription}></textarea>
+              onChange={this.onChangeDescription}
+            ></textarea>
           </div>
-          <div className='form-group'>
+          <div className="form-group">
             <input
-              type='submit'
-              value='Place Ad'
-              className='btn btn-block btn-secondary'
+              type="submit"
+              value="Place Ad"
+              className="btn btn-block btn-secondary"
               disabled={
                 !this.state.name ||
                 !this.state.image ||

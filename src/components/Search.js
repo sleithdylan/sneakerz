@@ -16,8 +16,8 @@ export class Search extends Component {
     return (
       <Form.Group>
         <Form.Control
-          type='text'
-          placeholder='Search Sneaker...'
+          type="text"
+          placeholder="Search Sneaker..."
           onChange={this.props.handleInput}
           style={formControlUnderlined}
         />

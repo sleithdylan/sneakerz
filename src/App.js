@@ -22,14 +22,14 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <main className='py-5'>
+        <main className="py-5">
           <Container>
             {/* Renders the first child <Route> that matches location */}
             <Switch>
-              <Route path='/' component={Browse} exact />
-              <Route path='/ad/new' component={PlaceAd} />
-              <Route path='/ad/:id' component={AdScreen} />
-              <Route path='/edit/:id' component={EditAd} />
+              <Route path="/" component={Browse} exact />
+              <Route path="/ad/new" component={PlaceAd} />
+              <Route path="/ad/:id" component={AdScreen} />
+              <Route path="/edit/:id" component={EditAd} />
             </Switch>
           </Container>
         </main>

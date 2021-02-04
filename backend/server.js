@@ -19,7 +19,10 @@ app.use(cors());
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 });
 
@@ -78,7 +81,7 @@ app.get('/api/ads/:id', (req, res) => {
 app.delete('/api/ads/:id', (req, res) => {
   console.log(`Removed Ad: ${req.params.id}`);
 
-  // Finds movie by ID and deletes it
+  // Finds ad by ID and deletes it
   Ad.findByIdAndDelete(req.params.id, (err, data) => {
     res.send(data);
   });
@@ -127,5 +130,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
